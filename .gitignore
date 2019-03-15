@@ -1,0 +1,16 @@
+*.iml
+target/
+### Eclipse template
+.idea/
+.metadata
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.project
+.classpath
+src/main/resources/application.properties
+src/main/resources/application-local.properties
