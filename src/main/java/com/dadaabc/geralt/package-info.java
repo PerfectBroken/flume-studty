@@ -61,4 +61,29 @@ package com.dadaabc.geralt;
   a1.sinks.k1.channel = c1
 
 
+  double flume test
+  测试一：当客户端崩溃了,重启客户端后，客户端会从json文件中读取到上次同步的位置(test未知是否收到ack才会更新？)
+  when the client flume crash，it will read the json file(sink:positionFile) to get the last updated position;
+
+
+  测试二：客户端重连机制：当服务端崩溃了，客户端如何重连？
+  when the server flume crash,how my client reconnect?
+  强关服务器后，客户端走的tcp 重发机制，快速三次重试后开始指数退避。尝试总共9次后，若还没收到ack，则断开连接，发SYN包重连。
+
+
+  测试三：当服务端不给客户端回复ack的话，客户端重新建连后重复发送的消息服务端是否会被重复消费？
+  步骤：
+  1.建立好连接，开始同步数据
+  2.服务端使用iptables屏蔽ack。此时客户端开始重试发送。
+  sudo iptables -I OUTPUT -ptcp --dport 4141 --tcp-flags ACK ACK -j DROP
+  sudo iptables -I OUTPUT -ptcp --dport 4141 --tcp-flags ACK,PSH ACK -j DROP
+  3.服务端重启服务
+  4.去掉iptables,使服务重连，客户端重新发送数据后，查看服务端是否生成相同的数据。
+  服务端会存储两条相同的数据！
+
+  ps:若服务端不重启呢？ 也是同样的问题。
+
+
+
+
  */

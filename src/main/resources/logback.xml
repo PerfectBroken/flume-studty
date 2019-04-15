@@ -11,8 +11,11 @@
         <file>/data0/logs/flume-test/flume-test-java.log</file>
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/data0/logs/flume-test/flume-test-java.log.%d{yyyyMMdd}
+            <fileNamePattern>/data0/logs/flume-test/flume-test-java.log.%d{yyyyMMdd}.%i
             </fileNamePattern>
+            <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+                <!--<maxFileSize>2MB</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
         </rollingPolicy>
         <encoder charset="UTF-8">
             <pattern> ${CONSOLE_LOG_PATTERN} </pattern>

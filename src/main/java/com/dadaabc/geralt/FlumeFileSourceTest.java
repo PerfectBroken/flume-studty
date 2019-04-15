@@ -63,9 +63,9 @@ public class FlumeFileSourceTest {
     }
 
     public static void test() throws Exception {
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 10000000; i++) {
             logger.info("online " + i);
-            Thread.sleep(3000);
+            Thread.sleep(3);
         }
     }
 }
